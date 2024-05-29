@@ -4,10 +4,10 @@ import hashlib
 
 def create_connection():
     conn = mysql.connector.connect(
-        host="127.0.0.1",
-        user="root",
-        password="",
-        database="spk_database"
+        host="sql.freedb.tech",
+        user="freedb_useruser",
+        password="Du6f&FdA9@Tg!M7",
+        database="freedb_scpk-kip"
     )
     return conn
 

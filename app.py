@@ -1,14 +1,14 @@
 import streamlit as st
-from user import is_registered, register, login
+from user import is_registered, register, login, create_connection
 import home, daftar, ranking, prediksi, konsultasi
 
 def main():
     st.title('SPK Penerima Bantuan KIP-K')
-
+    # create_connection()
     if not is_registered():
         register()
         return
-    
+
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
 
