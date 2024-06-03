@@ -12,23 +12,6 @@ def create_connection():
     )
     return conn
 
-def save_application(username, jenjang_pendidikan, afirmasi, akreditasi_pt, akreditasi_prodi, ukt, nilai_ipk):
-    conn = create_connection()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO applications (username, jenjang_pendidikan, afirmasi, akreditasi_pt, akreditasi_prodi, ukt, nilai_ipk) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                   (username, jenjang_pendidikan, afirmasi, akreditasi_pt, akreditasi_prodi, ukt, nilai_ipk))
-    conn.commit()
-    cursor.close()
-
-def validate_data(jenjang_pendidikan, afirmasi, akreditasi_pt, akreditasi_prodi, ukt, nilai_ipk):
-    if not jenjang_pendidikan or not afirmasi or not akreditasi_pt or not akreditasi_prodi:
-        return False
-    if ukt is None or nilai_ipk is None:
-        return False
-    if nilai_ipk > 4.00:
-        return False
-    return True
-
 def get_select_criteria():
     conn = create_connection()
     cursor = conn.cursor()
