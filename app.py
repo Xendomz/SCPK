@@ -2,12 +2,14 @@ import streamlit as st
 from user import register, login, create_connection
 import home, daftar, ranking, prediksi, konsultasi, criteria
 
+st.set_page_config(
+    page_title="Stroke Prediction App",
+    page_icon=":brain:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 def main():
-    st.set_page_config(layout="wide")
-    
-    st.title('SPK Penerima Bantuan KIP-K')
-
     if 'register_in' not in st.session_state:
         st.session_state.register_in = False
 

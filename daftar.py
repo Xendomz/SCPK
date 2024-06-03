@@ -125,7 +125,7 @@ def calculate():
     return pd.DataFrame(res, columns=columns)
 
 def daftar():
-    st.title('Menu Daftar Beasiswa')
+    st.title('Patient Prioritization Registration for Stroke Doctor Referral')
     with st.form(key='add_alter', clear_on_submit=True):
         username = st.text_input('Nama')
         input_data = get_select_criteria()
