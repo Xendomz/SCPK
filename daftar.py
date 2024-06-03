@@ -1,3 +1,4 @@
+import time
 import streamlit as st
 import mysql.connector
 import pandas as pd
@@ -67,6 +68,15 @@ def update_alter_data(data):
     cursor.close()
     conn.close()
     
+def delete_alter_data(username):
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM applications WHERE username = %s", [(username)])
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+    
 def calculate():
     conn = create_connection()
     cursor = conn.cursor()
@@ -110,14 +120,13 @@ def calculate():
         
     res.sort(reverse= True, key= lambda t: t[-1])
     
-    print(columns)
     columns.extend(['S', 'Vektor S', 'WP Score'])
     
     return pd.DataFrame(res, columns=columns)
 
 def daftar():
     st.title('Menu Daftar Beasiswa')
-    with st.form(key='registration_form', clear_on_submit=True):
+    with st.form(key='add_alter', clear_on_submit=True):
         username = st.text_input('Nama')
         input_data = get_select_criteria()
     
@@ -134,18 +143,29 @@ def daftar():
                     update_alter_data((username, input_data))
                     
                 st.success('Data Anda telah berhasil disimpan!')
-                    
-            # if validate_data(jenjang_pendidikan, afirmasi, akreditasi_pt, akreditasi_prodi, ukt, nilai_ipk):
-            #     conn = create_connection()
-            #     save_application(username, jenjang_pendidikan, afirmasi, akreditasi_pt, akreditasi_prodi, ukt, nilai_ipk)
-            #     st.success('Data Anda telah berhasil disimpan!')
-            #     conn.close()
-            # else:
-            #     st.error('Harap lengkapi semua kolom dengan benar!')
+                
+                time.sleep(1)
+                st.experimental_rerun()
+                
+    with st.form(key='delete_alter', clear_on_submit=True):
+        username = st.text_input('Nama')
+    
+        submitted = st.form_submit_button('Daftar')
+
+        if submitted:
+            if not id or not username:
+                st.error('Harap lengkapi kolom dengan benar!')
+            else:
+                is_alter = get_alter_by_username(username)
+                if not is_alter:
+                    st.error("Data Alternatif tidak ditemukan")
+                else:
+                    delete_alter_data(username)
+                    st.success('Data Anda telah berhasil dihapus!')
+                    time.sleep(1)
+                    st.experimental_rerun()
             
-    calculate_button = st.button('Kalkulasi')
-    if calculate_button:
-        st.write(calculate())
+    st.write(calculate())
 
 if __name__ == "__main__":
     daftar()
