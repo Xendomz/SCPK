@@ -3,10 +3,10 @@ import mysql.connector
 
 def create_connection():
     conn = mysql.connector.connect(
-        host="127.0.0.1",
-        user="root",
-        password="",
-        database="spk_database"
+        host="sql12.freemysqlhosting.net",
+        user="sql12710637",
+        password="hpWBInA8cr",
+        database="sql12710637"
     )
     return conn
 

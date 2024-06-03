@@ -1,6 +1,6 @@
 import streamlit as st
 from user import register, login, create_connection
-import home, daftar, ranking, prediksi, konsultasi
+import home, daftar, ranking, prediksi, konsultasi, criteria
 
 
 def main():
@@ -30,10 +30,12 @@ def main():
             return
 
     st.sidebar.title('Menu')
-    menu_selection = st.sidebar.radio('Pilih Menu:', ('Home', 'Daftar', 'Ranking', 'Prediksi', 'Konsultasi'))
+    menu_selection = st.sidebar.radio('Pilih Menu:', ('Home', 'Criteria', 'Daftar', 'Ranking', 'Prediksi', 'Konsultasi'))
 
     if menu_selection == 'Home':
         home.home()
+    elif menu_selection == 'Criteria':
+        criteria.criteria()
     elif menu_selection == 'Daftar':
         daftar.daftar()
     elif menu_selection == 'Ranking':
