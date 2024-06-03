@@ -29,17 +29,6 @@ def verify_login(conn, username, password):
     cursor.close()
     return user
 
-
-# def is_registered():
-#     conn = create_connection()
-#     cursor = conn.cursor()
-#     cursor.execute("SELECT COUNT(*) FROM users")
-#     count = cursor.fetchone()[0]
-#     cursor.close()
-#     conn.close()
-#     return count > 0
-
-
 def register():
     register_page = st.empty()
 

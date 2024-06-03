@@ -132,7 +132,6 @@ def get_selection_criteria():
             weight = st.number_input('Weight')
 
             if st.form_submit_button('Simpan'):
-                print(criteria.split(' | '))
                 if not id or not name or not weight or not criteria:
                     st.error('Harap lengkapi kolom dengan benar!')
                 else:
@@ -141,7 +140,6 @@ def get_selection_criteria():
                         create_sub_criteria((id, criteria.split(' | ')[0], name, weight))
                     else:
                         update_sub_criteria((id, criteria.split(' | ')[0], name, weight, id))
-                        False
                     
                     # update dataframe
                     st.success('Data Anda telah berhasil disimpan!')
@@ -187,9 +185,9 @@ def criteria_page():
             else:
                 is_criteria = get_criteria_by_id(id)
                 if not is_criteria:
-                    create_criteria((id, name, type, weight))
+                    create_criteria((id, name, type, weight * -1 if type == 'Cost' else weight))
                 else:
-                    update_criteria((id, name, type, weight, id))
+                    update_criteria((id, name, type, weight * -1 if type == 'Cost' else weight, id))
                 
                 st.success('Data Anda telah berhasil disimpan!')
                 
