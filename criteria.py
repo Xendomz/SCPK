@@ -1,9 +1,7 @@
 import time
 import streamlit as st
-import mysql.connector
 import pandas as pd
 from user import create_connection
-import criteria_add
 
 # function to get all criteria data
 def get_criteria_data():
