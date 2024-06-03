@@ -118,7 +118,7 @@ def get_selection_criteria():
             st.write(f"Daftar Kriteria {data[i][1]}:")
             
             columns = ['id', 'Nama Sub Kriteria', 'Bobot']
-            st.write(pd.DataFrame(res, columns=columns))
+            st.table(pd.DataFrame(res, columns=columns))
                     
     cursor.close()
     conn.close()
@@ -220,7 +220,7 @@ def criteria_page():
     # function to show criteria table
     st.title('Data Kriteria')
     st.write("Daftar Kriteria:")
-    st.write(get_criteria_data())
+    st.table(get_criteria_data())
 
     st.title('Data Pilihan Kriteria')
     st.write("Daftar Pilihan:")

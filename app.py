@@ -4,6 +4,8 @@ import home, daftar, ranking, prediksi, konsultasi, criteria
 
 
 def main():
+    st.set_page_config(layout="wide")
+    
     st.title('SPK Penerima Bantuan KIP-K')
 
     if 'register_in' not in st.session_state:

@@ -165,7 +165,7 @@ def daftar():
                     time.sleep(1)
                     st.experimental_rerun()
             
-    st.write(calculate())
+    st.table(calculate())
 
 if __name__ == "__main__":
     daftar()
